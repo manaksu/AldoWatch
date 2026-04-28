@@ -1,15 +1,10 @@
 #include <pebble.h>
 
-/* ── Aldo Watchface v4 ──────────────────────────────────────────────────
-   Time x=31, date same x, width matches time width exactly.
-   AM/PM top-aligned with time top, flush right of time.
-   ──────────────────────────────────────────────────────────────────── */
-
-#define TIME_X   31
+#define TIME_X   21
 #define TIME_Y   62
-#define AMPM_X  115
+#define AMPM_X  106
 #define AMPM_Y   62
-#define DATE_X   31
+#define DATE_X   21
 #define DATE_Y  104
 
 static Window      *s_window;
@@ -51,21 +46,21 @@ static void window_load(Window *w) {
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
   s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_15));
 
-  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 82, 46));
+  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 85, 46));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorDarkGray);
   text_layer_set_font(s_time_layer, s_font_time);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_time_layer));
 
-  s_ampm_layer = text_layer_create(GRect(AMPM_X, AMPM_Y, 28, 20));
+  s_ampm_layer = text_layer_create(GRect(AMPM_X, AMPM_Y, 22, 20));
   text_layer_set_background_color(s_ampm_layer, GColorClear);
   text_layer_set_text_color(s_ampm_layer, GColorLightGray);
   text_layer_set_font(s_ampm_layer, s_font_ampm);
   text_layer_set_text_alignment(s_ampm_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_ampm_layer));
 
-  s_date_layer = text_layer_create(GRect(DATE_X, DATE_Y, 82, 20));
+  s_date_layer = text_layer_create(GRect(DATE_X, DATE_Y, 81, 20));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorLightGray);
   text_layer_set_font(s_date_layer, s_font_date);
