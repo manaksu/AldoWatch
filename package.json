@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "pebble": {
     "displayName": "Aldo",
-    "uuid": "e5f6a7b8-c9d0-1234-efab-345678901236",
+    "uuid": "e5f6a7b8-c9d0-1234-efab-345678901237",
     "sdkVersion": "3",
     "targetPlatforms": ["basalt"],
     "watchapp": { "watchface": true },
@@ -24,7 +24,7 @@
         },
         {
           "type": "font",
-          "name": "FONT_ALDO_18",
+          "name": "FONT_ALDO_15",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[A-Z0-9 ,]"
         }
