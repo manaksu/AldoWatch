@@ -1,9 +1,16 @@
 #include <pebble.h>
 
-#define TIME_X   12
+/* ── Aldo Watchface v3 ──────────────────────────────────────────────────
+   Time and date left-aligned to same x=23.
+   AM/PM top-right of time, close, same vertical level.
+   ──────────────────────────────────────────────────────────────────── */
+
+#define TIME_X   23
 #define TIME_Y   62
-#define AMPM_Y   66
-#define DATE_Y  102
+#define AMPM_X  107
+#define AMPM_Y   62
+#define DATE_X   23
+#define DATE_Y  104
 
 static Window      *s_window;
 static TextLayer   *s_time_layer;
@@ -44,24 +51,21 @@ static void window_load(Window *w) {
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
   s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_18));
 
-  /* Time */
-  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 96, 46));
+  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 82, 46));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorDarkGray);
   text_layer_set_font(s_time_layer, s_font_time);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_time_layer));
 
-  /* AM/PM — positioned right of time */
-  s_ampm_layer = text_layer_create(GRect(110, AMPM_Y, 30, 20));
+  s_ampm_layer = text_layer_create(GRect(AMPM_X, AMPM_Y, 28, 20));
   text_layer_set_background_color(s_ampm_layer, GColorClear);
   text_layer_set_text_color(s_ampm_layer, GColorLightGray);
   text_layer_set_font(s_ampm_layer, s_font_ampm);
   text_layer_set_text_alignment(s_ampm_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_ampm_layer));
 
-  /* Date — 10px right of time start */
-  s_date_layer = text_layer_create(GRect(TIME_X + 10, DATE_Y, 122, 22));
+  s_date_layer = text_layer_create(GRect(DATE_X, DATE_Y, 120, 22));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorLightGray);
   text_layer_set_font(s_date_layer, s_font_date);
