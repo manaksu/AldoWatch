@@ -2,7 +2,7 @@
 
 #define TIME_X   21
 #define TIME_Y   62
-#define AMPM_X  106
+#define AMPM_X  101
 #define AMPM_Y   69
 #define DATE_X   21
 #define DATE_Y  104
@@ -42,11 +42,11 @@ static void tick_handler(struct tm *t, TimeUnits u) { update_time(t); }
 static void window_load(Window *w) {
   Layer *root = window_get_root_layer(w);
 
-  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_42));
+  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_44));
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
   s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_15));
 
-  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 85, 46));
+  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 90, 46));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorDarkGray);
   text_layer_set_font(s_time_layer, s_font_time);

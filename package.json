@@ -12,7 +12,7 @@
       "media": [
         {
           "type": "font",
-          "name": "FONT_ALDO_42",
+          "name": "FONT_ALDO_44",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[0-9:]"
         },
