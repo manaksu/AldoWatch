@@ -1,19 +1,9 @@
 #include <pebble.h>
 
-/* ── Aldo Watchface ─────────────────────────────────────────────────────
-   Creamy white background, charcoal text, Aldo the Apache font.
-   Layout:
-     Time  (48px): x=12, y=62  — left aligned
-     AM/PM (18px): x=110, y=66 — right of time
-     Date  (14px): x=22, y=100 — 10px right of time start, 4px below
-   ──────────────────────────────────────────────────────────────────── */
-
 #define TIME_X   12
 #define TIME_Y   62
-#define AMPM_X  110
 #define AMPM_Y   66
-#define DATE_X   22
-#define DATE_Y  100
+#define DATE_Y  102
 
 static Window      *s_window;
 static TextLayer   *s_time_layer;
@@ -29,7 +19,7 @@ static char s_date_buf[15];
 
 static void update_time(struct tm *t) {
   strftime(s_time_buf, sizeof(s_time_buf), "%H:%M", t);
-  strftime(s_ampm_buf, sizeof(s_ampm_buf), "%p",    t);
+  strftime(s_ampm_buf, sizeof(s_ampm_buf), "%p", t);
 
   char day[4], mday[3], mon[4], yr[3];
   strftime(day,  sizeof(day),  "%a", t);
@@ -50,28 +40,28 @@ static void tick_handler(struct tm *t, TimeUnits u) { update_time(t); }
 static void window_load(Window *w) {
   Layer *root = window_get_root_layer(w);
 
-  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_48));
-  s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_18));
-  s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_14));
+  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_42));
+  s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
+  s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_18));
 
   /* Time */
-  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 100, 52));
+  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 96, 46));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorDarkGray);
   text_layer_set_font(s_time_layer, s_font_time);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_time_layer));
 
-  /* AM/PM */
-  s_ampm_layer = text_layer_create(GRect(AMPM_X, AMPM_Y, 30, 22));
+  /* AM/PM — positioned right of time */
+  s_ampm_layer = text_layer_create(GRect(110, AMPM_Y, 30, 20));
   text_layer_set_background_color(s_ampm_layer, GColorClear);
   text_layer_set_text_color(s_ampm_layer, GColorLightGray);
   text_layer_set_font(s_ampm_layer, s_font_ampm);
   text_layer_set_text_alignment(s_ampm_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_ampm_layer));
 
-  /* Date */
-  s_date_layer = text_layer_create(GRect(DATE_X, DATE_Y, 122, 18));
+  /* Date — 10px right of time start */
+  s_date_layer = text_layer_create(GRect(TIME_X + 10, DATE_Y, 122, 22));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorLightGray);
   text_layer_set_font(s_date_layer, s_font_date);
