@@ -24,7 +24,7 @@
         },
         {
           "type": "font",
-          "name": "FONT_ALDO_15",
+          "name": "FONT_ALDO_16B",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[A-Z0-9 ,]"
         }
