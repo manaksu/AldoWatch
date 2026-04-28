@@ -2,7 +2,7 @@
 
 #define TIME_X   21
 #define TIME_Y   62
-#define AMPM_X  103
+#define AMPM_X  105
 #define AMPM_Y   69
 #define DATE_X   21
 #define DATE_Y  104
