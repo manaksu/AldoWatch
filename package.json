@@ -8,12 +8,13 @@
     "sdkVersion": "3",
     "targetPlatforms": ["basalt"],
     "watchapp": { "watchface": true },
+    "capabilities": ["configurable"],
     "messageKeys": { "THEME": 1 },
     "resources": {
       "media": [
-        { "type": "font", "name": "FONT_ALDO_50", "file": "fonts/aldo.ttf", "characterRegex": "[0-9:]" },
-        { "type": "font", "name": "FONT_ALDO_16", "file": "fonts/aldo.ttf", "characterRegex": "[A-Z0-9 ,]" },
-        { "type": "font", "name": "FONT_ALDO_13", "file": "fonts/aldo.ttf", "characterRegex": "[AMP]" },
+        { "type": "font", "name": "FONT_ALDO_50",  "file": "fonts/aldo.ttf", "characterRegex": "[0-9:]" },
+        { "type": "font", "name": "FONT_ALDO_16",  "file": "fonts/aldo.ttf", "characterRegex": "[A-Z0-9 ,]" },
+        { "type": "font", "name": "FONT_ALDO_13",  "file": "fonts/aldo.ttf", "characterRegex": "[AMP]" },
         { "type": "font", "name": "FONT_ALDO_13B", "file": "fonts/aldo.ttf", "characterRegex": "[A-Z0-9 ,]" }
       ]
     }
