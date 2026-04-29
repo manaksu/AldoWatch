@@ -20,15 +20,15 @@ static const Theme s_themes[NUM_THEMES] = {
   { .bg=GColorMintGreen,    .time_col=GColorDarkGray,  .ampm_col=GColorDarkGray,  .date_col=GColorDarkGray  },
 };
 
-static Settings s_settings;
-static Window      *s_window;
-static Layer       *s_canvas;
-static TextLayer   *s_ampm_layer;
-static TextLayer   *s_date_layer;
-static GFont        s_font_time;
-static GFont        s_font_ampm;
-static GFont        s_font_date_lg;  /* 16px */
-static GFont        s_font_date_sm;  /* 13px */
+static Settings   s_settings;
+static Window    *s_window;
+static Layer     *s_canvas;
+static TextLayer *s_ampm_layer;
+static TextLayer *s_date_layer;
+static GFont      s_font_time;
+static GFont      s_font_ampm;
+static GFont      s_font_date_lg;
+static GFont      s_font_date_sm;
 static char s_time_buf[6];
 static char s_ampm_buf[3];
 static char s_date_buf[15];
@@ -64,32 +64,35 @@ static void inbox_received(DictionaryIterator *iter, void *ctx) {
 static void canvas_update(Layer *layer, GContext *ctx) {
   Theme t = s_themes[s_settings.theme];
 
-  /* Draw time */
+  /* Draw time — give it generous space */
+  GRect time_bounds = GRect(TIME_X, TIME_Y, 120, 56);
   graphics_context_set_text_color(ctx, t.time_col);
-  GRect time_rect = GRect(TIME_X, TIME_Y, 120, 56);
-  graphics_draw_text(ctx, s_time_buf, s_font_time, time_rect,
+  graphics_draw_text(ctx, s_time_buf, s_font_time, time_bounds,
     GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
 
-  /* Measure actual rendered time width */
+  /* Measure exact rendered width of time glyphs */
   GSize time_size = graphics_text_layout_get_content_size(
-    s_time_buf, s_font_time, time_rect,
+    s_time_buf, s_font_time, time_bounds,
     GTextOverflowModeWordWrap, GTextAlignmentLeft);
-  int time_w = time_size.w;
+  int time_w = time_size.w;  /* pixel-accurate width from first to last digit */
 
-  /* Position AM/PM right after time */
-  int ampm_x = TIME_X + time_w + AMPM_GAP;
-  layer_set_frame(text_layer_get_layer(s_ampm_layer), GRect(ampm_x, AMPM_Y, 22, 18));
+  /* AM/PM: flush right after last digit + gap */
+  layer_set_frame(text_layer_get_layer(s_ampm_layer),
+    GRect(TIME_X + time_w + AMPM_GAP, AMPM_Y, 22, 18));
 
-  /* Pick date font: use large if it fits within time_w, else small */
-  GSize date_lg = graphics_text_layout_get_content_size(
+  /* Date: pick largest font that fits within time_w */
+  GFont date_font = s_font_date_sm;
+  GSize lg_size = graphics_text_layout_get_content_size(
     s_date_buf, s_font_date_lg,
     GRect(0, 0, time_w, 20),
     GTextOverflowModeWordWrap, GTextAlignmentLeft);
-
-  GFont date_font = (date_lg.w <= time_w) ? s_font_date_lg : s_font_date_sm;
+  if (lg_size.w <= time_w) {
+    date_font = s_font_date_lg;
+  }
   text_layer_set_font(s_date_layer, date_font);
 
-  /* Set date layer width = time width, same x as time */
+  /* Date layer: x=TIME_X, width=time_w — aligns first char under first digit,
+     layer clips at last digit edge */
   layer_set_frame(text_layer_get_layer(s_date_layer),
     GRect(TIME_X, DATE_Y, time_w, 20));
 }
@@ -116,10 +119,10 @@ static void window_load(Window *w) {
   Layer *root = window_get_root_layer(w);
   GRect bounds = layer_get_bounds(root);
 
-  s_font_time     = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_50));
-  s_font_ampm     = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13));
-  s_font_date_lg  = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
-  s_font_date_sm  = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13B));
+  s_font_time    = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_50));
+  s_font_ampm    = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13));
+  s_font_date_lg = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_16));
+  s_font_date_sm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13B));
 
   s_canvas = layer_create(bounds);
   layer_set_update_proc(s_canvas, canvas_update);
