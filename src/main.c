@@ -4,11 +4,11 @@
    5 color themes selectable via Pebble phone app settings.
    ──────────────────────────────────────────────────────────────────── */
 
-#define TIME_X   26
+#define TIME_X   22
 #define TIME_Y   48
-#define AMPM_X  114
+#define AMPM_X  118
 #define AMPM_Y   57
-#define DATE_X   24
+#define DATE_X   20
 #define DATE_Y   96
 
 #define SETTINGS_KEY  1
