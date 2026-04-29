@@ -139,7 +139,7 @@ static void window_unload(Window *w) {
 
 static void init(void) {
   load_settings();
-  app_message_open(64, 64);
+  app_message_open(256, 256);
   app_message_register_inbox_received(inbox_received);
   s_window = window_create();
   window_set_window_handlers(s_window, (WindowHandlers){
