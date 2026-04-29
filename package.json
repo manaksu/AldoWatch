@@ -8,6 +8,9 @@
     "sdkVersion": "3",
     "targetPlatforms": ["basalt"],
     "watchapp": { "watchface": true },
+    "messageKeys": {
+      "THEME": 1
+    },
     "resources": {
       "media": [
         {
@@ -24,7 +27,7 @@
         },
         {
           "type": "font",
-          "name": "FONT_ALDO_17",
+          "name": "FONT_ALDO_16",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[A-Z0-9 ,]"
         }
