@@ -42,7 +42,7 @@ static void tick_handler(struct tm *t, TimeUnits u) { update_time(t); }
 static void window_load(Window *w) {
   Layer *root = window_get_root_layer(w);
 
-  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_48));
+  s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_49));
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13));
   s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_17));
 
