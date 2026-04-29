@@ -3,9 +3,9 @@
 #define TIME_X   26
 #define TIME_Y   48
 #define AMPM_X  121
-#define AMPM_Y   48
+#define AMPM_Y   55
 #define DATE_X   24
-#define DATE_Y   88
+#define DATE_Y   90
 
 static Window      *s_window;
 static TextLayer   *s_time_layer;
@@ -62,7 +62,7 @@ static void window_load(Window *w) {
 
   s_date_layer = text_layer_create(GRect(DATE_X, DATE_Y, 100, 22));
   text_layer_set_background_color(s_date_layer, GColorClear);
-  text_layer_set_text_color(s_date_layer, GColorDarkGray);
+  text_layer_set_text_color(s_date_layer, GColorLightGray);
   text_layer_set_font(s_date_layer, s_font_date);
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
   layer_add_child(root, text_layer_get_layer(s_date_layer));
