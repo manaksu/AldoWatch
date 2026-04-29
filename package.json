@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "pebble": {
     "displayName": "Aldo",
-    "uuid": "e5f6a7b8-c9d0-1234-efab-345678901239",
+    "uuid": "e5f6a7b8-c9d0-1234-efab-345678901240",
     "sdkVersion": "3",
     "targetPlatforms": ["basalt"],
     "watchapp": { "watchface": true },
@@ -12,19 +12,19 @@
       "media": [
         {
           "type": "font",
-          "name": "FONT_ALDO_44",
+          "name": "FONT_ALDO_48",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[0-9:]"
         },
         {
           "type": "font",
-          "name": "FONT_ALDO_16",
+          "name": "FONT_ALDO_13",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[AMP]"
         },
         {
           "type": "font",
-          "name": "FONT_ALDO_16B",
+          "name": "FONT_ALDO_18",
           "file": "fonts/aldo.ttf",
           "characterRegex": "[A-Z0-9 ,]"
         }
