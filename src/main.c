@@ -3,7 +3,7 @@
 #define TIME_X   26
 #define TIME_Y   48
 #define AMPM_X  121
-#define AMPM_Y   55
+#define AMPM_Y   57
 #define DATE_X   24
 #define DATE_Y   93
 
@@ -44,7 +44,7 @@ static void window_load(Window *w) {
 
   s_font_time = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_48));
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13));
-  s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_18));
+  s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_17));
 
   s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 96, 52));
   text_layer_set_background_color(s_time_layer, GColorClear);
