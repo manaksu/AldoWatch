@@ -6,9 +6,9 @@
 
 #define TIME_X   22
 #define TIME_Y   48
-#define AMPM_X  118
+#define AMPM_X  122
 #define AMPM_Y   57
-#define DATE_X   20
+#define DATE_X   23
 #define DATE_Y   96
 
 #define SETTINGS_KEY  1
