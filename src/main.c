@@ -5,7 +5,7 @@
 #define AMPM_X  121
 #define AMPM_Y   55
 #define DATE_X   24
-#define DATE_Y   90
+#define DATE_Y   93
 
 static Window      *s_window;
 static TextLayer   *s_time_layer;
