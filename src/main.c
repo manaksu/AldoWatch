@@ -46,7 +46,7 @@ static void window_load(Window *w) {
   s_font_ampm = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_13));
   s_font_date = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ALDO_17));
 
-  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 96, 52));
+  s_time_layer = text_layer_create(GRect(TIME_X, TIME_Y, 100, 52));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorDarkGray);
   text_layer_set_font(s_time_layer, s_font_time);
